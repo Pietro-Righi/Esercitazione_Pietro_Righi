@@ -7,13 +7,15 @@ import org.esercizio.service.DrinkService;
 
 
 public class DrinkServiceImp implements DrinkService{
-
+	
+	private DrinkRepository repo;
+	private List<DrinkDTO> drinksDTO = null;
+	
 	@Override
 	public List<DrinkDTO> findByfirstLetter(String url) {
 		//System.out.print("Il link e "+url+"\n");
-		DrinkRepository repo = new DrinkRepository();
+		repo = new DrinkRepository();
 		
-		List<DrinkDTO> drinksDTO = null;
 		
 		drinksDTO=repo.findByfirstLetter(url);
 		
@@ -25,8 +27,7 @@ public class DrinkServiceImp implements DrinkService{
 	public List<DrinkDTO> findByID(String url) {
 		//System.out.print("Il link e "+url+"\n");
 		
-		DrinkRepository repo = new DrinkRepository();
-		List<DrinkDTO> drinksDTO = null;
+		repo = new DrinkRepository();
 		
 		drinksDTO = repo.findByID(url);
 	
@@ -38,8 +39,7 @@ public class DrinkServiceImp implements DrinkService{
 	public List<DrinkDTO> findByIngredient(String url) {
 		//System.out.print("Il link e "+url+"\n");
 		
-		DrinkRepository repo = new DrinkRepository();
-		List<DrinkDTO> drinksDTO = null;
+		repo = new DrinkRepository();
 		
 		drinksDTO = repo.findByIngredient(url);
 		
@@ -51,8 +51,7 @@ public class DrinkServiceImp implements DrinkService{
 	public String findImagesByID(String url) {
 		//System.out.print("Il link e "+url+"\n");
 		
-		DrinkRepository repo = new DrinkRepository();
-		List<DrinkDTO> drinksDTO = null;
+		repo = new DrinkRepository();
 		
 		
 		drinksDTO = repo.findByIngredient(url);
