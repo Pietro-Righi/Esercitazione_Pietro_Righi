@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
+
+//Visto che alcuni dati non sono strettamente necessari su usa il JsonIgnore per ignorare i dati senza un contenitore
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DrinkModel {
 
@@ -62,6 +64,9 @@ public class DrinkModel {
     
     
     
+    
+    
+    //Getter e Setter
 	public int getIdDrink() {
 		return idDrink;
 	}

@@ -1,15 +1,18 @@
 package org.esercizio.service;
 
+import java.util.List;
+
+import org.esercizio.dto.DrinkDTO;
 
 public interface DrinkService {
-	public String findByfirstLetter();
+	public List<DrinkDTO> findByfirstLetter(String url);
 	
 	
-	public String findByID();
+	public List<DrinkDTO> findByID(String url);
 	
 	
-	public String findByIngredient();
+	public List<DrinkDTO> findByIngredient(String url);
 	
 	
-	public String findImagesByID();
+	public String findImagesByID(String url);
 }

@@ -3,6 +3,8 @@ package org.esercizio.dto;
 import java.util.List;
 
 public class DrinkDTO {
+	
+	//Variabili filtrate dal DTO
 	private String name;
 	private String category;
 	private String type;
@@ -10,6 +12,8 @@ public class DrinkDTO {
 	private String drink_image;
 	private List<String> ingredients;
 	
+	
+	//Costruttore x oggetto completo
 	public DrinkDTO(String new_name, String new_category, String new_type, String new_glass, String new_image, List<String> new_ingredients) {
 		this.setName(new_name);
 		this.setCategory(new_category);
@@ -19,12 +23,15 @@ public class DrinkDTO {
 		this.setIngredients(new_ingredients);
 	}
 	
-	
+	//Costruttore x oggetto con il minimo indispensabile
 	public DrinkDTO(String new_name, String new_image) {
 		this.setName(new_name);
 		this.setDrink_image(new_image);
 	}
 
+	
+	
+	//Getter e setter
 	public String getName() {
 		return name;
 	}

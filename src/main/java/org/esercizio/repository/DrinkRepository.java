@@ -1,64 +1,79 @@
 package org.esercizio.repository;
 
-//import java.util.ArrayList;
 import java.util.List;
-
 import org.esercizio.dto.DrinkDTO;
 import org.esercizio.mapper.DrinkMapper;
 import org.esercizio.model.DrinkList;
-//import org.esercizio.model.DrinkModel;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //Visto che le api di thecocktaildb.com forniscono dati da loro non sara necessario una vera repository, 
 //ma comunque preferisco dividere le operazioni di raccoglimento dati.
 
-//Una vera repository sarebbe stata un interfaccia con i tag @Repository che utilizzando tag @Query sarebbe riuscita a prendere dati
-//da un ipotetico Database
+//Una vera repository sarebbe stata un interfaccia con i tag @Repository che utilizzando tag @Query 
+//sarebbe riuscita a prendere dati da un ipotetico Database
+
 
 @Component
 public class DrinkRepository {
+	//
+	private RestTemplate restTemplate;
+	private ObjectMapper mapper;
+	private DrinkList drinkList;
+	private DrinkMapper drinkMapper;
+	private String jsonString;
 	
-	
-	public List<DrinkDTO> findByfirstLetter(String url) throws JsonMappingException, JsonProcessingException {
-		RestTemplate restTemplate = new RestTemplate();
-		String jsonString = restTemplate.getForObject(url, String.class);
+	public List<DrinkDTO> findByfirstLetter(String url){
+		restTemplate = new RestTemplate();
+		jsonString = restTemplate.getForObject(url, String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		DrinkList prova = mapper.readValue(jsonString, DrinkList.class);
-		DrinkMapper d = new DrinkMapper();
+		mapper = new ObjectMapper();
+		
+		try {
+			drinkList = mapper.readValue(jsonString, DrinkList.class);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		drinkMapper = new DrinkMapper();
 		
 		
-		return d.GetAllDrinkDTO(prova.getDrinks());
+		return drinkMapper.GetAllDrinkDTO(drinkList.getDrinks());
 	}
 
 	
-	public List<DrinkDTO> findByID(String url) throws JsonMappingException, JsonProcessingException {
-		RestTemplate restTemplate = new RestTemplate();
-		String jsonString = restTemplate.getForObject(url, String.class);
+	public List<DrinkDTO> findByID(String url){
+		restTemplate = new RestTemplate();
+		jsonString = restTemplate.getForObject(url, String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		DrinkList prova = mapper.readValue(jsonString, DrinkList.class);
-		DrinkMapper d = new DrinkMapper();
+		mapper = new ObjectMapper();
+		
+		try {
+			drinkList = mapper.readValue(jsonString, DrinkList.class);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		drinkMapper = new DrinkMapper();
 		
 		
-		return d.GetAllDrinkDTO(prova.getDrinks());
+		return drinkMapper.GetAllDrinkDTO(drinkList.getDrinks());
 	}
 
 	
-	public List<DrinkDTO> findByIngredient(String url) throws JsonMappingException, JsonProcessingException {
-		RestTemplate restTemplate = new RestTemplate();
-		String jsonString = restTemplate.getForObject(url, String.class);
+	public List<DrinkDTO> findByIngredient(String url){
+		restTemplate = new RestTemplate();
+		jsonString = restTemplate.getForObject(url, String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		DrinkList prova = mapper.readValue(jsonString, DrinkList.class);
+		mapper = new ObjectMapper();
 		
-		
-		
+		try {
+			drinkList = mapper.readValue(jsonString, DrinkList.class);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		
 		
 		/* Si potrebbe ottenere anche drink con informazioni, ma visto la quantità di ingredienti supererebbe 
@@ -76,26 +91,31 @@ public class DrinkRepository {
 			drink_con_desc.add(drink.getDrinks().get(0));
 			
 		}
+		
+		* ed ipoteticamente la lista sarebbe drink_con_desc
 		*/
 
+		drinkMapper = new DrinkMapper();
 		
 		
-		
-		DrinkMapper d = new DrinkMapper();
-		
-		
-		return d.GetAllDrinkDTO(prova.getDrinks());
+		return drinkMapper.GetAllDrinkDTO(drinkList.getDrinks());
 	}
 
-	public List<DrinkDTO> findImagesByID(String url) throws JsonMappingException, JsonProcessingException {
-		RestTemplate restTemplate = new RestTemplate();
-		String jsonString = restTemplate.getForObject(url, String.class);
+	public List<DrinkDTO> findImagesByID(String url) {
+		restTemplate = new RestTemplate();
+		jsonString = restTemplate.getForObject(url, String.class);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		DrinkList prova = mapper.readValue(jsonString, DrinkList.class);
-		DrinkMapper d = new DrinkMapper();
+		mapper = new ObjectMapper();
+		
+		try {
+			drinkList = mapper.readValue(jsonString, DrinkList.class);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		drinkMapper = new DrinkMapper();
 		
 		
-		return d.GetAllDrinkDTO(prova.getDrinks());
+		return drinkMapper.GetAllDrinkDTO(drinkList.getDrinks());
 	}
 }
