@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Component
-
+//Fac simile di un esempio di oggetto che userebbe l' api di TheCocktailDB
+//Recupereremo i dati dal json fornito dal sito stesso e si andranno a posizionare nei propri contenitori
 //Visto che alcuni dati non sono strettamente necessari su usa il JsonIgnore per ignorare i dati senza un contenitore
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DrinkModel {
@@ -24,8 +25,10 @@ public class DrinkModel {
     private String strInstructionsDE;
     private String strInstructionsFR;
     private String strInstructionsIT;
+    //Questi dati sono ignorati
     private String strInstructionsZH_HANS;
     private String strInstructionsZH_HANT;
+    //
     private String strDrinkThumb;
     private String strIngredient1;
     private String strIngredient2;

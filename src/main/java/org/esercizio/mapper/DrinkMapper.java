@@ -2,7 +2,6 @@ package org.esercizio.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.esercizio.dto.DrinkDTO;
 import org.esercizio.model.DrinkModel;
 import org.springframework.stereotype.Component;
@@ -36,7 +35,6 @@ public class DrinkMapper {
 			ingredients.add(drink.getStrIngredient13());
 			ingredients.add(drink.getStrIngredient14());
 			ingredients.add(drink.getStrIngredient15());
-			// TBS
 			
 			drinks = new DrinkDTO(drink.getStrDrink(), drink.getStrCategory(), drink.getStrAlcoholic(), drink.getStrGlass(), drink.getStrDrinkThumb(), ingredients);
 		}
@@ -54,7 +52,9 @@ public class DrinkMapper {
 	// Processa una lista di oggetti Drink e li traduce in DrinkDTO
 	public List<DrinkDTO> GetAllDrinkDTO(List<DrinkModel> drinks){
 		
-		// Mappa una lista che trasforma ogni oggetto DrinkModel in DrinkDTO
+		// Utilizzando la lista drinks si crea una copia drinksDTO mappando ogni elemento
+		// e successivamente tramutarlo in DrinkDTO utilizzando la classe interna al mapper
+		// e finalmente ottenendo la lista tramite il metodo .toList() ( lista del tipo List<DrinkDTO>)
 		List<DrinkDTO> drinksDTO=drinks.stream().map(this::toDrinkDTO).toList();
 		return drinksDTO;
 	}

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControllerEsercizio {
 	
 		private String url;
-		
+		private DrinkServiceImp service;
 		
 		
 		/* Per provare funziona sia una lettera maiuscola che minuscola */
@@ -28,7 +28,7 @@ public class ControllerEsercizio {
 			
 			url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+ drink.getName();
 			
-			DrinkServiceImp service = new DrinkServiceImp();
+			service = new DrinkServiceImp();
 			
 		    return service.findByfirstLetter(url);
 		}
@@ -49,7 +49,7 @@ public class ControllerEsercizio {
 			url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
 			
 			
-			DrinkServiceImp service = new DrinkServiceImp();
+			service = new DrinkServiceImp();
 			
 		    return service.findByfirstLetter(url);
 		}
@@ -68,7 +68,7 @@ public class ControllerEsercizio {
 		public List<DrinkDTO> findByIngredient(@RequestBody Drink drink){
 			url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ drink.getName();
 			
-			DrinkServiceImp service = new DrinkServiceImp();
+			service = new DrinkServiceImp();
 			
 		    return service.findByIngredient(url);
 		}
@@ -86,7 +86,7 @@ public class ControllerEsercizio {
 		public String findImagesByID(@RequestBody Drink drink){
 			url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
 			
-			DrinkServiceImp service = new DrinkServiceImp();
+			service = new DrinkServiceImp();
 			
 		    return service.findImagesByID(url);
 		}

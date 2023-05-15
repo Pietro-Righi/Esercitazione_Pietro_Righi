@@ -23,7 +23,7 @@ public class DrinkDTO {
 		this.setIngredients(new_ingredients);
 	}
 	
-	//Costruttore x oggetto con il minimo indispensabile
+	//Costruttore x oggetto con il minimo indispensabile ( usato dal DrinkMapper per casi speciali )
 	public DrinkDTO(String new_name, String new_image) {
 		this.setName(new_name);
 		this.setDrink_image(new_image);
