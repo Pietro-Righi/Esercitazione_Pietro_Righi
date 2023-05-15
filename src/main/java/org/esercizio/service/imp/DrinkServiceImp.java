@@ -7,9 +7,11 @@ import org.esercizio.service.DrinkService;
 
 
 public class DrinkServiceImp implements DrinkService{
-	
+	//
 	private DrinkRepository repo;
 	private List<DrinkDTO> drinksDTO = null;
+	
+	//Implementazione e sviluppo dei servizi
 	
 	@Override
 	public List<DrinkDTO> findByfirstLetter(String url) {
@@ -56,7 +58,7 @@ public class DrinkServiceImp implements DrinkService{
 		
 		drinksDTO = repo.findByIngredient(url);
 		
-		return "Ecco un immagine del drink selezionato "+drinksDTO.get(0).getName()+" :"+drinksDTO.get(0).getDrink_image();
+		return "Ecco un immagine del drink selezionato <"+drinksDTO.get(0).getName()+"> :"+drinksDTO.get(0).getDrink_image();
 	}
 
 }
