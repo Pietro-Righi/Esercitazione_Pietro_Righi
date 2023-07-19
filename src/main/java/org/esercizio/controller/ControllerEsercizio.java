@@ -26,22 +26,28 @@ public class ControllerEsercizio {
 		/* Per provare funziona sia una lettera maiuscola che minuscola */
 		@PostMapping("/findByfirstLetter")
 		public List<DrinkDTO> findByfirstLetter(@RequestBody Drink drink){
-			
-			url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+ drink.getName();
-
-
-			try{
-				if(drink == null){
-					throw new Exception("Hai inserito un null");
-				}
-			}catch (Exception e){
-				System.out.print("Errore");
-			}
-
 
 			service = new DrinkServiceImp();
-			
-		    return service.findByfirstLetter(url);
+			List<DrinkDTO> response= null;
+
+			try{
+				if(drink.getName().equals("") && drink != null){
+					response = null;
+					throw new NullDrinkException("Hai inserito un null");
+				}
+				else{
+					url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
+					response = service.findByfirstLetter(url);
+				}
+
+
+			}catch (NullDrinkException e){
+				System.out.println(e.getMessage());
+			}
+
+			//System.out.println(drink);
+
+			return response;
 		}
 		
 		
@@ -57,12 +63,29 @@ public class ControllerEsercizio {
 		 * */
 		@PostMapping("/findByID")
 		public List<DrinkDTO> findByID(@RequestBody Drink drink){
-			url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
-			
-			
+
+
 			service = new DrinkServiceImp();
-			
-		    return service.findByID(url);
+			List<DrinkDTO> response= null;
+
+			try{
+				if(drink.getName().equals("") && drink != null){
+					response = null;
+					throw new NullDrinkException("Hai inserito un null");
+				}
+				else{
+					url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
+					response = service.findByID(url);
+				}
+
+
+			}catch (NullDrinkException e){
+				System.out.println(e.getMessage());
+			}
+
+			//System.out.println(drink);
+
+			return response;
 		}
 		
 		
@@ -77,11 +100,28 @@ public class ControllerEsercizio {
 		 * */
 		@PostMapping("/findByIngredient")
 		public List<DrinkDTO> findByIngredient(@RequestBody Drink drink){
-			url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ drink.getName();
-			
+
 			service = new DrinkServiceImp();
-			
-		    return service.findByIngredient(url);
+			List<DrinkDTO> response= null;
+
+			try{
+				if(drink.getName().equals("") && drink != null){
+					response = null;
+					throw new NullDrinkException("Hai inserito un null");
+				}
+				else{
+					url = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i="+ drink.getName();
+					response = service.findByIngredient(url);
+				}
+
+
+			}catch (NullDrinkException e){
+				System.out.println(e.getMessage());
+			}
+
+			//System.out.println(drink);
+
+			return response;
 		}
 		
 		
