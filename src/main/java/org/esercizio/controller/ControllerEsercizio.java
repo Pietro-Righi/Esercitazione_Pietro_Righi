@@ -4,6 +4,7 @@ package org.esercizio.controller;
 import java.util.List;
 
 import org.esercizio.dto.DrinkDTO;
+import org.esercizio.exception.NullDrinkException;
 import org.esercizio.model.Drink;
 import org.esercizio.service.imp.DrinkServiceImp;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,17 @@ public class ControllerEsercizio {
 		public List<DrinkDTO> findByfirstLetter(@RequestBody Drink drink){
 			
 			url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+ drink.getName();
-			
+
+
+			try{
+				if(drink == null){
+					throw new Exception("Hai inserito un null");
+				}
+			}catch (Exception e){
+				System.out.print("Errore");
+			}
+
+
 			service = new DrinkServiceImp();
 			
 		    return service.findByfirstLetter(url);
@@ -51,7 +62,7 @@ public class ControllerEsercizio {
 			
 			service = new DrinkServiceImp();
 			
-		    return service.findByfirstLetter(url);
+		    return service.findByID(url);
 		}
 		
 		
@@ -84,10 +95,26 @@ public class ControllerEsercizio {
 		 * */
 		@PostMapping("/findImageByID")
 		public String findImagesByID(@RequestBody Drink drink){
-			url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
-			
 			service = new DrinkServiceImp();
-			
-		    return service.findImagesByID(url);
+			String response= null;
+
+			try{
+				if(drink.getName().equals("") && drink != null){
+					response = "ERRORE, inserito null oppure valore non valido";
+					throw new NullDrinkException("Hai inserito un null");
+				}
+				else{
+					url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
+					response = service.findImagesByID(url);
+				}
+
+
+			}catch (NullDrinkException e){
+				System.out.println(e.getMessage());
+			}
+
+			//System.out.println(drink);
+
+			return response;
 		}
 }
