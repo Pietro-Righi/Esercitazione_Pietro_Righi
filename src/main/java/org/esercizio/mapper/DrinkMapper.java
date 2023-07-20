@@ -19,7 +19,7 @@ public class DrinkMapper {
 		// Se viene processato dal servizio findByIngredient avrà meno informazioni perchè il carico del json è alto
 		// e di base non avrà una categoria ma solo nome e link immaggine
 		if(drink.getStrCategory()!=null) {
-			List<String> ingredients = new ArrayList<String>();
+			List<String> ingredients = new ArrayList<>();
 			ingredients.add(drink.getStrIngredient1());
 			ingredients.add(drink.getStrIngredient2());
 			ingredients.add(drink.getStrIngredient3());
@@ -55,7 +55,6 @@ public class DrinkMapper {
 		// Utilizzando la lista drinks si crea una copia drinksDTO mappando ogni elemento
 		// e successivamente tramutarlo in DrinkDTO utilizzando la classe interna al mapper
 		// e finalmente ottenendo la lista tramite il metodo .toList() ( lista del tipo List<DrinkDTO>)
-		List<DrinkDTO> drinksDTO=drinks.stream().map(this::toDrinkDTO).toList();
-		return drinksDTO;
+		return drinks.stream().map(this::toDrinkDTO).toList();
 	}
 }

@@ -56,7 +56,7 @@ public class DrinkServiceImp implements DrinkService{
 		repo = new DrinkRepository();
 		
 		
-		drinksDTO = repo.findByIngredient(url);
+		drinksDTO = repo.findImagesByID(url);
 		
 		return "Ecco un immagine del drink selezionato <"+drinksDTO.get(0).getName()+"> :"+drinksDTO.get(0).getDrink_image();
 	}
