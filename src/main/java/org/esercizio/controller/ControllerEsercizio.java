@@ -1,7 +1,7 @@
 package org.esercizio.controller;
-
-
 import java.util.List;
+
+
 
 import org.esercizio.dto.DrinkDTO;
 import org.esercizio.exception.NullDrinkException;
@@ -30,13 +30,14 @@ public class ControllerEsercizio {
 			service = new DrinkServiceImp();
 			List<DrinkDTO> response= null;
 
+
 			try{
 				if(drink.getName().equals("") && drink != null){
 					response = null;
 					throw new NullDrinkException("Hai inserito un null");
 				}
 				else{
-					url = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+ drink.getName();
+					url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f="+ drink.getName();
 					response = service.findByfirstLetter(url);
 				}
 
